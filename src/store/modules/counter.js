@@ -1,0 +1,16 @@
+export default {
+  namespaced: true,
+  // IMPORTANT: state must be a function so the module can be
+  // instantiated multiple times
+  state: () => ({
+    count: 0
+  }),
+  actions: {
+    inc: ({ commit }) => commit("inc"),
+    dec: ({ commit }) => commit("dec")
+  },
+  mutations: {
+    inc: state => state.count++,
+    dec: state => state.count--
+  }
+};

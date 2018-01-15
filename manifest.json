@@ -1,0 +1,9 @@
+{
+  "name": "Vue SSR Example",
+  "short_name": "Vue SSR",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#f2f3f5",
+  "display": "standalone",
+  "theme_color": "#f60"
+}
