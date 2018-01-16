@@ -17,6 +17,16 @@ export default {
     return store.dispatch("counter/inc");
   },
 
+  beforeMount() {
+    // Need this hack to register module on client if that component prerendered on server
+    const counterStore = this.$store._modules.get(["counter"]);
+    if (!counterStore) {
+      this.$store.registerModule("counter", counterStoreModule, {
+        preserveState: true
+      });
+    }
+  },
+
   // IMPORTANT: avoid duplicate module registration on the client
   // when the route is visited multiple times.
   destroyed() {

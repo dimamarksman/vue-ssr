@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <app-header></app-header>
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
@@ -8,8 +9,11 @@
 
 
 <script>
+import AppHeader from "./components/Header.vue";
+
 export default {
-  name: "app-root"
+  name: "app-root",
+  components: { AppHeader }
 };
 </script>
 
@@ -20,7 +24,6 @@ body {
   font-size: 15px;
   background-color: #f5f5f5;
   margin: 0;
-  padding-top: 55px;
   color: #34495e;
   overflow-y: scroll;
 }
