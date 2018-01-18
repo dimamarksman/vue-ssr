@@ -6,12 +6,11 @@
 
 <script>
 export default {
-  name: "home",
-  title: "Hello"
+  name: 'home',
+  title: 'Hello'
 };
 </script>
 
 <style lang="scss">
 
 </style>
-

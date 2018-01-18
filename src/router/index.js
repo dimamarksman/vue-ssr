@@ -1,19 +1,23 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue';
+import Router from 'vue-router';
 
 Vue.use(Router);
 
 export function createRouter() {
   return new Router({
-    mode: "history",
+    mode: 'history',
     routes: [
-      { path: "/", component: () => import("../components/Home.vue") },
-      { path: "/about", component: () => import("../components/About.vue") },
+      { path: '/', component: () => import('../components/Home.vue') },
+      { path: '/about', component: () => import('../components/About.vue') },
       {
-        path: "/counter",
-        component: () => import("../components/Counter.vue")
+        path: '/counter',
+        component: () => import('../components/Counter.vue')
       },
-      { path: "/items/:id", component: () => import("../components/Item.vue") }
+      { path: '/items/:id', component: () => import('../components/Item.vue') },
+      {
+        path: '/weather',
+        component: () => import('../components/Weather.vue')
+      }
     ]
   });
 }

@@ -1,11 +1,13 @@
-import Vue from "vue";
-import "es6-promise/auto";
-import { createApp } from "./app";
-import ProgressBar from "./components/ProgressBar.vue";
+import Vue from 'vue';
+import 'es6-promise/auto';
+import { createApp } from './app';
+import ProgressBar from './components/ProgressBar.vue';
 
 // global progress bar
 const bar = (Vue.prototype.$bar = new Vue(ProgressBar).$mount());
 document.body.appendChild(bar.$el);
+
+const { app, router, store, api } = createApp();
 
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
@@ -14,7 +16,8 @@ Vue.mixin({
     if (asyncData) {
       asyncData({
         store: this.$store,
-        route: to
+        route: to,
+        api: this.$api
       })
         .then(next)
         .catch(next);
@@ -23,8 +26,6 @@ Vue.mixin({
     }
   }
 });
-
-const { app, router, store } = createApp();
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.
@@ -52,7 +53,7 @@ router.onReady(() => {
     }
 
     bar.start();
-    Promise.all(asyncDataHooks.map(hook => hook({ store, route: to })))
+    Promise.all(asyncDataHooks.map(hook => hook({ store, route: to, api })))
       .then(() => {
         bar.finish();
         next();
@@ -61,10 +62,10 @@ router.onReady(() => {
   });
 
   // actually mount to DOM
-  app.$mount("#app");
+  app.$mount('#app');
 });
 
 // service worker
-if ("https:" === location.protocol && navigator.serviceWorker) {
-  navigator.serviceWorker.register("/service-worker.js");
+if ('https:' === location.protocol && navigator.serviceWorker) {
+  navigator.serviceWorker.register('/service-worker.js');
 }

@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: "about",
+  name: 'about',
   asyncData({ store, route }) {
     // return the Promise from the action
-    return store.dispatch("fetchItem", route.params.id);
+    return store.dispatch('FETCH_ITEM', route.params.id);
   },
   computed: {
     // display the item from store state.
@@ -21,4 +21,3 @@ export default {
 <style lang="scss">
 
 </style>
-

@@ -6,12 +6,11 @@
 
 <script>
 export default {
-  name: "about",
-  title: "About Vue SSR"
+  name: 'about',
+  title: 'About Vue SSR'
 };
 </script>
 
 <style lang="scss">
 
 </style>
-

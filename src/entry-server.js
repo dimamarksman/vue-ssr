@@ -1,6 +1,6 @@
-import { createApp } from "./app";
+import { createApp } from './app';
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV !== 'production';
 
 // This exported function will be called by `bundleRenderer`.
 // This is where we perform data-prefetching to determine the
@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV !== "production";
 export default context => {
   return new Promise((resolve, reject) => {
     const s = isDev && Date.now();
-    const { app, router, store } = createApp();
+    const { app, router, store, api } = createApp();
 
     const { url } = context;
     const { fullPath } = router.resolve(url).route;
@@ -39,7 +39,8 @@ export default context => {
             asyncData &&
             asyncData({
               store,
-              route: router.currentRoute
+              route: router.currentRoute,
+              api
             })
         )
       )

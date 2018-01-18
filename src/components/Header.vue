@@ -3,13 +3,14 @@
       <router-link to="/">Home</router-link>
       <router-link to="/counter">Counter</router-link>
       <router-link to="/items/12345">Item</router-link>
+      <router-link to="/weather">Weather</router-link>
       <router-link to="/about">About</router-link>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "app-header"
+  name: 'app-header'
 };
 </script>
 
