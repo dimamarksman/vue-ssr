@@ -12,12 +12,28 @@ export default context => {
     const s = isDev && Date.now();
     const { app, router, store, api } = createApp();
 
-    const { url } = context;
+    const { url, serverApp } = context;
     const { fullPath } = router.resolve(url).route;
 
     if (fullPath !== url) {
       return reject({ url: fullPath });
     }
+
+    /**
+     * Proxy client's weather request
+     */
+    serverApp.get('/weather', (req, res, next) => {
+      const query = req.query;
+      const { lat, long } = query;
+      api.getWeatherByLatLong(lat, long, query).then(
+        data => {
+          res.send(data);
+        },
+        error => {
+          next(error);
+        }
+      );
+    });
 
     // set router's location
     router.push(url);

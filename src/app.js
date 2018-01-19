@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
 
+import config from './config';
 import App from './App.vue';
 import { createStore } from './store';
 import { createRouter } from './router';
-import { createApi } from './api';
+import { createAPI } from './api';
 import titleMixin from './util/title';
 
 // mixin for handling title
@@ -14,7 +15,7 @@ Vue.mixin(titleMixin);
 // app instances on each call (which is called for each SSR request)
 export function createApp() {
   // create store and router instances
-  const api = createApi();
+  const api = createAPI(config);
   const store = createStore(api);
   const router = createRouter();
 
